@@ -38,13 +38,15 @@ jobs:
         run: mvn -B package --file pom.xml -Dmaven.test.skip=true
 
       - name: parent working directory
-        run: ls
+        run: cd target
 
+      - name: parent working directory2
+        run: ls
       - name: 将 JAR 包部署到服务器
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: /home/runner/work/OurBlog/OurBlog/*
-          remote: OurBlog/*
+          local: target/OurBlog-0.0.1-SNAPSHOT.jar
+          remote: OurBlog/OurBlog-0.0.1-SNAPSHOT.jar
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
@@ -53,7 +55,7 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: | # 命令中的 & 表示在后台运行进程
-            cd blog.imzjw.cn/actions/ && java -jar github-actions-springboot.jar &
+            cd blog.imzjw.cn/actions/ && java -jar OurBlog-0.0.1-SNAPSHOT.jar &
           host: ${{ secrets.HOST }}
           user: ${{ secrets.SSH_USER }}
           pass: ${{ secrets.SSH_PASSWORD }}
