@@ -39,7 +39,7 @@ jobs:
       - name: 将 JAR 包部署到服务器
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: /home/runner/work/OurBlog/OurBlog/target/classes/github-actions-springboot-0.0.1-SNAPSHOT.jar
+          local: target/classes/github-actions-springboot-0.0.1-SNAPSHOT.jar
           remote: blog.imzjw.cn/actions/github-actions-springboot.jar
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
