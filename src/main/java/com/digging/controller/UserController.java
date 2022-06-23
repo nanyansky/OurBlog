@@ -37,7 +37,7 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public Result<User> login(HttpServletRequest req, @RequestBody User user)
+    public Result<UserDTO> login(HttpServletRequest req, @RequestBody User user)
     {
         String username = user.getUsername();
         String password = user.getPassword();
@@ -64,7 +64,9 @@ public class UserController {
         }
         //登陆成功
         req.getSession().setAttribute("user",userTmp.getId());
-        return Result.success("登录成功！");
+        UserDTO userDTO = new UserDTO();
+        BeanUtils.copyProperties(userTmp,userDTO);
+        return Result.success(userDTO ,"登录成功！");
     }
 
     @PostMapping("/register")
