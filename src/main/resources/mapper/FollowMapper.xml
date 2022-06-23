@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.digging.mapper.FollowMapper">
+    <resultMap id="FollowMapper" type="com.digging.entity.Follow">
+        <result column="host_id" property="hostId"/>
+        <result column="guest_id" property="guestId"/>
+    </resultMap>
+
+
+    <select id="getFollowedUser" resultMap="FollowMapper">
+        select *
+        from user
+        where id in (
+            select guest_id
+            from follow
+            where host_id = #{userId}
+        );
+    </select>
+
+</mapper>
