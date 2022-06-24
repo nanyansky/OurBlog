@@ -45,6 +45,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
+
       - name: 在服务器上执行 java -jar
         if: always()
         uses: fifsky/ssh-action@master
