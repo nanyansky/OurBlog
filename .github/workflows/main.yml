@@ -49,7 +49,7 @@ jobs:
       - name: 杀进程
         uses: fifsky/ssh-action@master
         with:
-          command: |
+          command: | 
             pkill -9 java
 
       - name: 在服务器上执行 java -jar
