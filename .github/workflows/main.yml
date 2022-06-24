@@ -46,12 +46,15 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
 
+      - name: 杀进程
+        run: pkill -9 java
+
       - name: 在服务器上执行 java -jar
         if: always()
         uses: fifsky/ssh-action@master
         with:
           command: | # 命令中的 & 表示在后台运行进程
-            pkill -9 java && cd /home/www/OurBlog && java -jar OurBlog-0.0.1-SNAPSHOT.jar &
+             cd /home/www/OurBlog && java -jar OurBlog-0.0.1-SNAPSHOT.jar &
           host: ${{ secrets.HOST }}
           user: ${{ secrets.SSH_USER }}
           pass: ${{ secrets.SSH_PASSWORD }}
