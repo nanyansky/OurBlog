@@ -10,6 +10,13 @@ spring:
       username: db_ourblog
       password: 123456
 
+    redis:
+      host:172.0.0.1
+      port: 6379
+      password:
+      database: 0
+
+
   mybatis-plus:
     mapper-locations: classpath:mapper/*.xml
     configuration:

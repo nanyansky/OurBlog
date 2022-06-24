@@ -62,7 +62,7 @@ public class UserController {
         {
             return Result.error("用户已禁用！");
         }
-        //登陆成功
+        //登录成功
         req.getSession().setAttribute("user",userTmp.getId());
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyProperties(userTmp,userDTO);
