@@ -47,7 +47,10 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
 
       - name: 杀进程
-        run: pkill -9 java
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            pkill -9 java
 
       - name: 在服务器上执行 java -jar
         if: always()
