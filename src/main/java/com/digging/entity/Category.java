@@ -1,5 +1,7 @@
 package com.digging.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -11,5 +13,6 @@ public class Category {
     //标签名
     private String name;
     //创建日期
-    private LocalDateTime date;
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
 }

@@ -36,7 +36,7 @@ public class CategoryController {
     {
         LambdaQueryWrapper<Category> queryWrapper = new LambdaQueryWrapper<>();
 
-        queryWrapper.orderByDesc(Category::getDate);
+        queryWrapper.orderByDesc(Category::getCreateTime);
 
         List<Category> categoryList = categoryService.list(queryWrapper);
         List<CategoryDTO> categoryDTOList = new ArrayList<>();

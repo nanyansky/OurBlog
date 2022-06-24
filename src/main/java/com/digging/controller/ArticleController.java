@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.digging.common.Result;
 import com.digging.entity.Article;
+import com.digging.entity.Category;
+import com.digging.entity.Tags;
 import com.digging.model.dto.ArticleDTO;
 import com.digging.model.dto.PageDTO;
 import com.digging.service.ArticleService;
@@ -11,10 +13,9 @@ import com.digging.service.TagsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,6 +102,25 @@ public class ArticleController {
     }
 
     //修改文章
+
+    //添加文章
+    @PostMapping("/add")
+    public Result<ArticleDTO> addBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
+    {
+        Long userId = (Long) request.getSession().getAttribute("user");
+        List<String> tagsList = articleDTO.getTagsName();
+        articleDTO.setUserId(userId);
+        System.out.println(articleDTO.getTagsName());
+//        log.info("tags: {}", articleDTO);
+
+        for(String tag : tagsList)
+        {
+
+        }
+
+        return Result.success(articleDTO);
+
+    }
 
 }
 

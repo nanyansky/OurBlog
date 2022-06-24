@@ -1,5 +1,7 @@
 package com.digging.model.dto;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.digging.entity.Article;
 import lombok.Data;
 
@@ -13,7 +15,8 @@ public class CategoryDTO {
     //标签名
     private String name;
     //创建日期
-    private LocalDateTime date;
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
 
     //该分类下的文章集合
     private List<ArticleDTO> articleList;

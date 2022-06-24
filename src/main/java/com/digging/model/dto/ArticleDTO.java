@@ -32,6 +32,8 @@ public class ArticleDTO {
 
 
     //文章标签
-    @TableField
     private List<Tags> tags = new ArrayList<>();
+
+    //文章标签名
+    private List<String> tagsName = new ArrayList<>();
 }
