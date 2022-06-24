@@ -42,6 +42,7 @@ public class LoginCheckFilter implements Filter {
                 "/blog/list",
                 // 文章分类接口
                 "/category/list"
+
         };
 
         //如果不需要处理，直接放行
