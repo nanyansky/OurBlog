@@ -71,7 +71,7 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public Result logout(HttpServletRequest httpServletRequest)
+    public Result<String> logout(HttpServletRequest httpServletRequest)
     {
         log.info("用户登出！");
         httpServletRequest.removeAttribute("user");

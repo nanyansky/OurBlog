@@ -36,12 +36,17 @@ public class LoginCheckFilter implements Filter {
         String[] urls = new String[]{
                 "/user/login",
                 "/user/logout",
+                "/user/register",
                 "/static/**",
                 "/common/**",
                 // 博客首页接楼
                 "/blog/list",
                 // 文章分类接口
-                "/category/list"
+                "/category/list",
+
+                //后台登录拦截
+                "/admin/user/login",
+                "/admin/user/logout"
 
         };
 
@@ -65,9 +70,7 @@ public class LoginCheckFilter implements Filter {
         //用户未登录
         log.info("用户未登录！");
         //如果登录则返回未登录结果,通过输出流向客户端页面响应数据
-        response.getWriter().write(JSON.toJSONString(Result.error("用户未登录！")));
-
-        return;
+        response.getWriter().write(JSON.toJSONString(Result.error("Not Login！")));
     }
 
     public boolean check(String[] URIS, String RequestURI)
