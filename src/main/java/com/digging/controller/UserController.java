@@ -1,6 +1,7 @@
 package com.digging.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.api.R;
 import com.digging.common.MyCustomException;
 import com.digging.common.Result;
 import com.digging.entity.User;
@@ -67,6 +68,15 @@ public class UserController {
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyProperties(userTmp,userDTO);
         return Result.success(userDTO ,"登录成功！");
+    }
+
+    @GetMapping("/logout")
+    public Result logout(HttpServletRequest httpServletRequest)
+    {
+        log.info("用户登出！");
+        httpServletRequest.removeAttribute("user");
+
+        return Result.success("登出成功！");
     }
 
     @PostMapping("/register")
