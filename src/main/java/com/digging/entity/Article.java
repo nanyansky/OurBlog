@@ -26,7 +26,7 @@ public class Article {
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
     //修改时间
-    @TableField(fill = FieldFill.UPDATE)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
     //是否被删除
     private Boolean isDelete;

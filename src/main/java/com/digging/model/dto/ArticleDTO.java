@@ -25,7 +25,7 @@ public class ArticleDTO {
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
     //修改时间
-    @TableField(fill = FieldFill.UPDATE)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
     //文章热度
     private Long articleHot;

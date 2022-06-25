@@ -36,7 +36,7 @@ public class GlobalExceptionHandler {
     {
         log.info(e.getMessage());
 
-        return Result.error("图片大小超过2M,请重新选择！");
+        return Result.error("图片大小超过1M,请重新选择！");
     }
 
     @ExceptionHandler(MyCustomException.class)

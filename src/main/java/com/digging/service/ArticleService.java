@@ -19,4 +19,6 @@ public interface ArticleService extends IService<Article> {
 
     //获取某个分类下的文章集合
     public List<ArticleDTO> getArticleByCategoryId(Long categoryId);
+
+    public void handleTags(Long articleId, List<String> tagsList);
 }

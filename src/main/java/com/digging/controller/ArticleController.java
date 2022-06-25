@@ -1,14 +1,15 @@
 package com.digging.controller;
 
+import cn.hutool.core.lang.Snowflake;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.digging.common.Result;
 import com.digging.entity.Article;
-import com.digging.entity.Category;
-import com.digging.entity.Tags;
+import com.digging.entity.ArticleTags;
 import com.digging.model.dto.ArticleDTO;
 import com.digging.model.dto.PageDTO;
 import com.digging.service.ArticleService;
+import com.digging.service.ArticleTagService;
 import com.digging.service.TagsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @RestController
@@ -28,6 +30,8 @@ public class ArticleController {
     ArticleService articleService;
     @Autowired
     TagsService tagsService;
+    @Autowired
+    ArticleTagService articleTagService;
 
     /**
      * 首页：文章分页
@@ -38,7 +42,6 @@ public class ArticleController {
     @GetMapping("/list")
     public Result<PageDTO> blogList(int page, int pageSize, Long userId)
     {
-
         log.info("page={}, pageSize={}",page,pageSize);
         //构造分页构造器
         Page pageInfo = new Page(page, pageSize);
@@ -102,25 +105,69 @@ public class ArticleController {
     }
 
     //修改文章
+    @PostMapping("/update")
+    public Result<String> updateBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
+    {
+        Long articleId = articleDTO.getId();
+        Long userId = (Long) request.getSession().getAttribute("user");
+        List<String> tagsList = articleDTO.getTagsName();
+        log.info("tagsList: {}",tagsList);
+        articleDTO.setUserId(userId);
+
+        //修改文章
+        Article article = new Article();
+        BeanUtils.copyProperties(articleDTO,article);
+        articleService.updateById(article);
+
+        //处理标签
+        articleService.handleTags(articleId,tagsList);
+
+        return Result.success("修改成功！");
+    }
 
     //添加文章
     @PostMapping("/add")
-    public Result<ArticleDTO> addBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
+    public Result<String> addBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
     {
+        //雪花算法生成 articleId
+        Snowflake snowflake = new Snowflake(1,1);
+        long articleId = snowflake.nextId();
+
         Long userId = (Long) request.getSession().getAttribute("user");
         List<String> tagsList = articleDTO.getTagsName();
         articleDTO.setUserId(userId);
-        System.out.println(articleDTO.getTagsName());
-        log.info("tags: {}", articleDTO);
+        articleDTO.setId(articleId);
 
-        for(String tag : tagsList)
-        {
+        //保存文章
+        Article article = new Article();
+        BeanUtils.copyProperties(articleDTO,article);
+        articleService.save(article);
 
-        }
+        log.info("tags:{}",tagsList);
 
-        return Result.success(articleDTO);
+        //处理标签
+        articleService.handleTags(articleId,tagsList);
 
+        return Result.success("发布成功，请等待审核！");
     }
 
+
+
+    //删除文章
+    @GetMapping("/delete")
+    public Result<String> deleteBlog(HttpServletRequest request, Long articleId)
+    {
+        Long userId = (Long) request.getSession().getAttribute("user");
+        if(!Objects.equals(articleService.getOne(new LambdaQueryWrapper<Article>().eq(Article::getId, articleId)).getUserId(), userId))
+        {
+            return Result.error("您不是此文章的作者，无法删除！");
+        }
+
+        articleService.removeById(articleId);
+
+        articleTagService.remove(new LambdaQueryWrapper<ArticleTags>().eq(ArticleTags::getArticleId, articleId));
+
+        return Result.success("删除成功！");
+    }
 }
 
