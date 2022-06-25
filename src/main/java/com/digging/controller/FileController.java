@@ -34,7 +34,8 @@ public class FileController {
 
     // 文件上传
     @PostMapping("/upload")
-    public Result<String> upload(HttpServletRequest request, MultipartFile file){
+    public Result<String> upload(HttpServletRequest request, MultipartFile file) throws Throwable{
+
         // file是一个临时文件，需要转存到磁盘中的某个指定位置，否则本次请求完成后，临时文件file会删除
         //   upload方法名中的参数名 必须是file（文件上传表单的 中name属性值必须是file,name="file"）
         log.info("上传的文件为: "+file.toString());
@@ -60,16 +61,16 @@ public class FileController {
             e.printStackTrace();
         }
 
-        //更新头像
-//        //获取img名
-//        request.getSession().setAttribute("imgName",fileName);
-        //获取用户id
-        Long userId = (Long) request.getSession().getAttribute("user");
-        User userTmp = new User();
-        userTmp.setId(userId);
-        userTmp.setIcon(fileName);
-
-        userService.updateById(userTmp);
+//        //更新头像
+////        //获取img名
+////        request.getSession().setAttribute("imgName",fileName);
+//        //获取用户id
+//        Long userId = (Long) request.getSession().getAttribute("user");
+//        User userTmp = new User();
+//        userTmp.setId(userId);
+//        userTmp.setIcon(fileName);
+//
+//        userService.updateById(userTmp);
 
         return Result.success(fileName);
     }

@@ -1,6 +1,7 @@
 package com.digging.common;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,7 +13,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 // 全局异常处理
 // 如果类上加有 @RestController、@Controller注解(annotations的属性值)的类中有方法抛出异常，由GlobalExceptionHander来处理异常
-@ControllerAdvice(annotations = {RestController.class, Controller.class})
+@ControllerAdvice
 @ResponseBody  // 将结果封装成JSON数据并返回
 @Slf4j
 public class GlobalExceptionHandler {
@@ -28,6 +29,14 @@ public class GlobalExceptionHandler {
             return Result.error(msg);
         }
         return Result.error("操作失败！");
+    }
+
+    @ExceptionHandler(FileSizeLimitExceededException.class)
+    public Result<String> exceptionHandler(FileSizeLimitExceededException e)
+    {
+        log.info(e.getMessage());
+
+        return Result.error("图片大小超过2M,请重新选择！");
     }
 
     @ExceptionHandler(MyCustomException.class)

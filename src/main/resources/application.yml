@@ -11,8 +11,8 @@ spring:
       password: 123456
   servlet:
     multipart:
-      max-file-size: 10MB
-      max-request-size: 100MB
+      # 上传图片限定大小为 2M
+      max-file-size: 2MB
 
 
 mybatis-plus:

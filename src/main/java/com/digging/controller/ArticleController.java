@@ -111,7 +111,7 @@ public class ArticleController {
         List<String> tagsList = articleDTO.getTagsName();
         articleDTO.setUserId(userId);
         System.out.println(articleDTO.getTagsName());
-//        log.info("tags: {}", articleDTO);
+        log.info("tags: {}", articleDTO);
 
         for(String tag : tagsList)
         {

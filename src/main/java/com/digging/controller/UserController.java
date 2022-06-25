@@ -134,6 +134,8 @@ public class UserController {
     public Result<String> updateUser(HttpServletRequest request, @RequestBody User user)
     {
         Long userId = (Long) request.getSession().getAttribute("user");
+        //对密码进行MD5加密
+        user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         user.setId(userId);
         userService.updateById(user);
 
