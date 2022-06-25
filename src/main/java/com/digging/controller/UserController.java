@@ -86,7 +86,6 @@ public class UserController {
         userTmp.setUsername(user.getUsername());
         //对密码进行MD5加密
         userTmp.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
-        userTmp.setIcon("default_img");
         if(userService.save(userTmp))
         {
             return Result.success("注册成功！");

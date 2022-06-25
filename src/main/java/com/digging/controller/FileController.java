@@ -1,7 +1,10 @@
 package com.digging.controller;
 
 import com.digging.common.Result;
+import com.digging.entity.User;
+import com.digging.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,9 +29,12 @@ public class FileController {
     @Value("${upload.filePath}")
     private String basePath;
 
+    @Autowired
+    UserService userService;
+
     // 文件上传
     @PostMapping("/upload")
-    public Result<String> upload(MultipartFile file){
+    public Result<String> upload(HttpServletRequest request, MultipartFile file){
         // file是一个临时文件，需要转存到磁盘中的某个指定位置，否则本次请求完成后，临时文件file会删除
         //   upload方法名中的参数名 必须是file（文件上传表单的 中name属性值必须是file,name="file"）
         log.info("上传的文件为: "+file.toString());
@@ -53,6 +60,16 @@ public class FileController {
             e.printStackTrace();
         }
 
+        //更新头像
+//        //获取img名
+//        request.getSession().setAttribute("imgName",fileName);
+        //获取用户id
+        Long userId = (Long) request.getSession().getAttribute("user");
+        User userTmp = new User();
+        userTmp.setId(userId);
+        userTmp.setIcon(fileName);
+
+        userService.updateById(userTmp);
 
         return Result.success(fileName);
     }

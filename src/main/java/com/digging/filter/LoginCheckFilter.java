@@ -39,11 +39,6 @@ public class LoginCheckFilter implements Filter {
                 "/user/register",
                 "/static/**",
 
-                "/backend/**",
-                "/OurBlog/backend/**",
-                "/file/upload",
-                "file/download",
-
                 "/common/**",
                 // 博客首页
                 "/blog/list",
