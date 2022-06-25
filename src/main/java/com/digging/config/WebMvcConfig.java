@@ -14,12 +14,14 @@ import java.util.List;
 @Slf4j
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport{
-    //    @Override
-//    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        log.info("页面映射开始。。。");
-//        registry.addResourceHandler("/backend/**").addResourceLocations("classpath:/backend/");
-//        registry.addResourceHandler("/front/**").addResourceLocations("classpath:/front/");
-//    }
+
+
+        @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        log.info("页面映射开始。。。");
+        registry.addResourceHandler("/backend/**").addResourceLocations("classpath:/backend/");
+        registry.addResourceHandler("/front/**").addResourceLocations("classpath:/front/");
+    }
 
     /**
      * 扩展MVC的消息转换器

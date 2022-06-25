@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>test for file</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript">
+        function uploadAvatar(){
+            //1 创建文件读取对象
+            var reader=new FileReader();
+
+            //文件存储在file表单元素的files属性中，它是一个数组
+            //没有返回值，但是读取完毕后，将读取结果存储在对象的result中
+            var fil=document.getElementById("file1").files;
+            reader.readAsDataURL(fil[0]);
+
+            //当读取成功后触发
+            reader.onload=function(){
+                document.getElementById("img1").src=reader.result;
+            };
+        }
+
+    </script>
+
+</head>
+<body>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    学号：<input type="text" name="sno"/><br/>
+    姓名：<input type="text" name="sname"/><br/>
+    照片：<img id="img1" src="/test/default.png" style="height:100px;width:100px;border-radius:50px"><br><!--src="/test/default.png"使用了虚拟路径，不然访问不到-->
+    <input id="file1" type="file" name="spicture" onchange="uploadAvatar()"/><br/>
+    <input type="submit" value="提交"/>
+</form>
+<br>
+<a href="/download">下载1.jpg</a>
+</body>
+</html>
