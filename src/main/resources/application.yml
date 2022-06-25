@@ -9,18 +9,22 @@ spring:
       url: jdbc:mysql://138.2.94.113:3306/db_OurBlog?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: db_ourblog
       password: 123456
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
 
 
-  mybatis-plus:
-    mapper-locations: classpath:mapper/*.xml
-    configuration:
-      #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
-      map-underscore-to-camel-case: true
-      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    global-config:
-      db-config:
-        # 雪花算法
-        id-type: ASSIGN_ID
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      # 雪花算法
+      id-type: ASSIGN_ID
 
 upload:
   filePath: /home/www/OurBlog/imgs/
