@@ -57,7 +57,7 @@ public class FollowController {
     }
 
     //关注功能
-    @GetMapping("/{hostUserId}")
+    @GetMapping("/add/{hostUserId}")
     public Result<String> followUser(HttpServletRequest request, @PathVariable Long hostUserId)
     {
         Long userId = (Long) request.getSession().getAttribute("user");
@@ -72,5 +72,22 @@ public class FollowController {
 
 
         return Result.success("关注成功！");
+    }
+
+    //取关功能
+    @GetMapping("/remove/{hostUserId}")
+    public Result<String> unFollowUser(HttpServletRequest request, @PathVariable Long hostUserId)
+    {
+        Long userId = (Long) request.getSession().getAttribute("user");
+
+        log.info("user:{}",userId);
+
+        LambdaQueryWrapper<Follow> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Follow::getHostId, hostUserId);
+
+        followService.remove(queryWrapper);
+
+
+        return Result.success("取关成功！");
     }
 }

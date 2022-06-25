@@ -130,5 +130,14 @@ public class UserController {
         return Result.success(userDTO);
     }
 
-    //
+    //用户修改个人信息
+    @PostMapping("/update")
+    public Result<String> updateUser(HttpServletRequest request, @RequestBody User user)
+    {
+        Long userId = (Long) request.getSession().getAttribute("user");
+        user.setId(userId);
+        userService.updateById(user);
+
+        return Result.success("修改成功！");
+    }
 }

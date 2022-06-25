@@ -21,6 +21,6 @@ public class User {
     //创建时间
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
-    //是否删除
+    //是否禁用
     private Boolean isDisable;
 }

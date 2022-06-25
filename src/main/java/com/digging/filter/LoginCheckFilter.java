@@ -39,12 +39,12 @@ public class LoginCheckFilter implements Filter {
                 "/user/register",
                 "/static/**",
                 "/common/**",
-                // 博客首页接楼
+                // 博客首页
                 "/blog/list",
                 // 文章分类接口
                 "/category/list",
 
-                //后台登录拦截
+                //后台登录放行
                 "/admin/user/login",
                 "/admin/user/logout"
 
