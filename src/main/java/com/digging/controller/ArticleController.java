@@ -106,7 +106,7 @@ public class ArticleController {
 
     //修改文章
     @PostMapping("/update")
-    public Result<Article> updateBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
+    public Result<String> updateBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
     {
         Long articleId = articleDTO.getId();
         Long userId = (Long) request.getSession().getAttribute("user");
@@ -121,10 +121,12 @@ public class ArticleController {
         articleService.updateById(article);
 
         //处理标签
+        //删除原来的标签
+        articleTagService.remove(new LambdaQueryWrapper<ArticleTags>().eq(ArticleTags::getArticleId,articleId));
+        //保存新的标签对应信息
         articleService.handleTags(articleId,tagsList);
 
-//        return Result.success("修改成功！");
-        return Result.success(article);
+        return Result.success("修改成功！");
     }
 
     //添加文章
