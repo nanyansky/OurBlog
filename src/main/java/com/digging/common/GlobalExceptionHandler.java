@@ -31,12 +31,21 @@ public class GlobalExceptionHandler {
         return Result.error("操作失败！");
     }
 
+    //解决上传文件大小报错
     @ExceptionHandler(FileSizeLimitExceededException.class)
     public Result<String> exceptionHandler(FileSizeLimitExceededException e)
     {
         log.info(e.getMessage());
 
         return Result.error("图片大小超过1M,请重新选择！");
+    }
+
+    //解决空指针异常报错
+    @ExceptionHandler(NullPointerException.class)
+    public Result<String> exceptionHandler(NullPointerException e)
+    {
+        log.info(e.getMessage());
+        return Result.error("字段不能为空！");
     }
 
     @ExceptionHandler(MyCustomException.class)

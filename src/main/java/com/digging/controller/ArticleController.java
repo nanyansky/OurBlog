@@ -158,7 +158,8 @@ public class ArticleController {
     public Result<String> deleteBlog(HttpServletRequest request, Long articleId)
     {
         Long userId = (Long) request.getSession().getAttribute("user");
-        if(!Objects.equals(articleService.getOne(new LambdaQueryWrapper<Article>().eq(Article::getId, articleId)).getUserId(), userId))
+        articleService.getById(new LambdaQueryWrapper<Article>().select(Article::getId).eq(Article::getId, articleId));
+        if(!Objects.equals(articleService.getOne(new LambdaQueryWrapper<Article>().select(Article::getUserId).eq(Article::getId, articleId)), userId))
         {
             return Result.error("您不是此文章的作者，无法删除！");
         }
