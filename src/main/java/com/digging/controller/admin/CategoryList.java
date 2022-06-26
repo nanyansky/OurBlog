@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-@RequestMapping
+@RequestMapping("/admin")
 public class CategoryList {
+
+    //获取分类列表
+
 }

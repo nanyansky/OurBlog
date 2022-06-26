@@ -117,6 +117,7 @@ public class ArticleController {
         //修改文章
         Article article = new Article();
         BeanUtils.copyProperties(articleDTO,article);
+
         articleService.updateById(article);
 
         //处理标签

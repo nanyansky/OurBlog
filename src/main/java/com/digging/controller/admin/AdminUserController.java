@@ -65,4 +65,7 @@ public class AdminUserController {
 
         return Result.success("登出成功！");
     }
+
+    //管理用户列表
+//    @GetMapping
 }
