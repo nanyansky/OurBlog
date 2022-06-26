@@ -106,7 +106,7 @@ public class ArticleController {
 
     //修改文章
     @PostMapping("/update")
-    public Result<String> updateBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
+    public Result<Article> updateBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
     {
         Long articleId = articleDTO.getId();
         Long userId = (Long) request.getSession().getAttribute("user");
@@ -123,7 +123,8 @@ public class ArticleController {
         //处理标签
         articleService.handleTags(articleId,tagsList);
 
-        return Result.success("修改成功！");
+//        return Result.success("修改成功！");
+        return Result.success(article);
     }
 
     //添加文章
