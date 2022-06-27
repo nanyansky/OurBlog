@@ -15,6 +15,8 @@ public class ArticleDTO {
     private Long id;
     //作者id
     private Long userId;
+    //作者用户名
+    private String username;
     //分类id
     private Long categoryId;
     //文章名

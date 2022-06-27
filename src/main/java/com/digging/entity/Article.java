@@ -14,6 +14,8 @@ public class Article {
     private Long id;
     //作者id
     private Long userId;
+    //作者用户名
+    private String username;
     //是否通过审核
     private Boolean available;
     //分类id

@@ -110,9 +110,11 @@ public class ArticleController {
     {
         Long articleId = articleDTO.getId();
         Long userId = (Long) request.getSession().getAttribute("user");
+        String username = (String) request.getSession().getAttribute("username");
         List<String> tagsList = articleDTO.getTagsName();
         log.info("tagsList: {}",tagsList);
         articleDTO.setUserId(userId);
+        articleDTO.setUsername(username);
 
         //修改文章
         Article article = new Article();
@@ -138,9 +140,11 @@ public class ArticleController {
         long articleId = snowflake.nextId();
 
         Long userId = (Long) request.getSession().getAttribute("user");
+        String username = (String) request.getSession().getAttribute("username");
         List<String> tagsList = articleDTO.getTagsName();
         articleDTO.setUserId(userId);
         articleDTO.setId(articleId);
+        articleDTO.setUsername(username);
 
         //保存文章
         Article article = new Article();

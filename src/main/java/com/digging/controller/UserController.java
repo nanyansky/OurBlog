@@ -65,6 +65,7 @@ public class UserController {
         }
         //登录成功
         req.getSession().setAttribute("user",userTmp.getId());
+        req.getSession().setAttribute("username",username);
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyProperties(userTmp,userDTO);
         return Result.success(userDTO ,"登录成功！");
