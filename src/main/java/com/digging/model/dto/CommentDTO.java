@@ -1,17 +1,22 @@
-package com.digging.entity;
+package com.digging.model.dto;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
-import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.time.LocalDateTime;
+
 @Data
-public class Comment {
+public class CommentDTO {
+
     //评论id
     private Long id;
     //评论用户id
     private Long userId;
+    //评论用户username
+    private String username;
+    //评论用户头像
+    private String icon;
     //所在文章id
     private Long articleId;
     //评论内容
@@ -19,6 +24,4 @@ public class Comment {
     //创建时间
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
-    //是否删除
-    private Boolean isDelete;
 }

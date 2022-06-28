@@ -13,14 +13,16 @@ public class ElasticSearchConfig {
 
     //    <beans id='restHighLevelClient' class=RestHighLevelClient
 
-    @Value("es.host")
+    @Value("${es.host}")
     private String host;
+    @Value("${es.port}")
+    private int port;
 
     @Bean
     public RestHighLevelClient restHighLevelClient() {
         RestHighLevelClient client = new RestHighLevelClient(
                 RestClient.builder(
-                        new HttpHost("138.2.82.55",9200,"http")
+                        new HttpHost(host,port,"http")
                 )
         );
         return client;

@@ -39,6 +39,11 @@ public class LoginCheckFilter implements Filter {
                 "/user/register",
                 "/static/**",
 
+                //放行查看评论
+                "/comment/list",
+
+                //ES
+                "/elastic/**",
                 //放行下载图片
                 "/file/download",
 
