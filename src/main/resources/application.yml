@@ -7,7 +7,7 @@ spring:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://129.150.63.35:3306/db_OurBlog?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
-      username: db_ourblog
+      username: db_OurBlog
       password: 123456
   servlet:
     multipart:
