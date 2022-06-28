@@ -50,8 +50,8 @@ jobs:
         if: always()
         uses: fifsky/ssh-action@master
         with:
-          command: | # pkill杀原进程；命令中的 & 表示在后台运行进程
-            pkill -9 java  
+          command: | # fuser杀占用8081端口的进程；命令中的 & 表示在后台运行进程
+            sudo fuser -k 8081/tcp            
             cd /home/www/OurBlog && java -jar OurBlog-0.0.1-SNAPSHOT.jar &
           host: ${{ secrets.HOST }}
           user: ${{ secrets.SSH_USER }}
