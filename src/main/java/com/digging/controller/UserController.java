@@ -138,7 +138,7 @@ public class UserController {
     @PostMapping("/update")
     public Result<String> updateUser(HttpServletRequest request, @RequestBody User user)
     {
-        if(user.getUsername().equals("") && user.getPassword().equals(""))
+        if(user.getUsername().equals("") || user.getPassword().equals(""))
         {
             return Result.error("用户名或密码不能为空！");
         }

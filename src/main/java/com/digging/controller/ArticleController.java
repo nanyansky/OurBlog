@@ -111,7 +111,7 @@ public class ArticleController {
     @PostMapping("/update")
     public Result<String> updateBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
     {
-        if(articleDTO.getName().equals("") && articleDTO.getContent().equals(""))
+        if(articleDTO.getName().equals("") || articleDTO.getContent().equals(""))
         {
             return Result.error("请输入标题或内容！");
         }
@@ -142,7 +142,7 @@ public class ArticleController {
     @PostMapping("/add")
     public Result<String> addBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
     {
-        if(articleDTO.getName().equals("") && articleDTO.getContent().equals(""))
+        if(articleDTO.getName().equals("") || articleDTO.getContent().equals(""))
         {
             return Result.error("请输入标题或内容！");
         }
