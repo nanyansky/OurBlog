@@ -40,6 +40,7 @@ public class UserController {
     @PostMapping("/login")
     public Result<UserDTO> login(HttpServletRequest req, @RequestBody User user)
     {
+        if(user.getUsername().equals("") || user.getPassword().equals("")) return Result.error("用户名和密码不能为空！");
         String username = user.getUsername();
         String password = user.getPassword();
         //对密码进行MD5加密
