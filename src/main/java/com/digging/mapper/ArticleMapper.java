@@ -8,11 +8,13 @@ import com.digging.service.TagsService;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Mapper
+@Primary
 public interface ArticleMapper extends BaseMapper<Article> {
 
     @Select("select count(*) from article where user_id = #{userId}")

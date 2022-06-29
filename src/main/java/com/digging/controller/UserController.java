@@ -66,6 +66,9 @@ public class UserController {
         //登录成功
         req.getSession().setAttribute("user",userTmp.getId());
         req.getSession().setAttribute("username",username);
+
+        log.info("{}", req.getSession().getAttribute("username"));
+
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyProperties(userTmp,userDTO);
         return Result.success(userDTO ,"登录成功！");
@@ -76,6 +79,7 @@ public class UserController {
     {
         log.info("用户登出！");
         httpServletRequest.removeAttribute("user");
+        httpServletRequest.removeAttribute("username");
 
         return Result.success("登出成功！");
     }
@@ -138,8 +142,12 @@ public class UserController {
         //对密码进行MD5加密
         user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         user.setId(userId);
+        //更新用户表
         userService.updateById(user);
 
-        return Result.success("修改成功！");
+        //更新文章表
+        userService.updateArticleUsername(userId,user.getUsername());
+
+        return Result.success("修改成功，请重新登录！");
     }
 }

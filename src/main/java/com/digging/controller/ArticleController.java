@@ -41,9 +41,12 @@ public class ArticleController {
      * @return 分页文章
      */
     @GetMapping("/list")
-    public Result<PageDTO> blogList(int page, int pageSize, Long userId)
+    public Result<PageDTO> blogList(HttpServletRequest request, int page, int pageSize, Long userId)
     {
         log.info("page={}, pageSize={}",page,pageSize);
+
+        String username = (String) request.getSession().getAttribute("username");
+
         //构造分页构造器
         Page pageInfo = new Page(page, pageSize);
         PageDTO pageDTO = new PageDTO<>();
@@ -65,7 +68,6 @@ public class ArticleController {
             //拷贝数据
             BeanUtils.copyProperties(item, articleDTO, "available","isDelete");
             articleDTO.setTags(articleService.getTagsList(item.getId()));
-            System.out.println(articleService.getTagsList(item.getId()));
             articleDTOList.add(articleDTO);
         }
 

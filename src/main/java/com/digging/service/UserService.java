@@ -12,4 +12,7 @@ import java.util.List;
 public interface UserService extends IService<User> {
     //查找粉丝数
     List<User> getFollowedUser(Long userId);
+
+    //更新文章表
+    void updateArticleUsername(Long userId,String username);
 }
