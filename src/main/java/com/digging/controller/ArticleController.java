@@ -111,6 +111,10 @@ public class ArticleController {
     @PostMapping("/update")
     public Result<String> updateBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
     {
+        if(articleDTO.getName().equals("") && articleDTO.getContent().equals(""))
+        {
+            return Result.error("请输入标题或内容！");
+        }
         Long articleId = articleDTO.getId();
         Long userId = (Long) request.getSession().getAttribute("user");
         String username = (String) request.getSession().getAttribute("username");
@@ -138,6 +142,10 @@ public class ArticleController {
     @PostMapping("/add")
     public Result<String> addBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
     {
+        if(articleDTO.getName().equals("") && articleDTO.getContent().equals(""))
+        {
+            return Result.error("请输入标题或内容！");
+        }
         //雪花算法生成 articleId
         Snowflake snowflake = new Snowflake(1,1);
         long articleId = snowflake.nextId();
@@ -185,6 +193,7 @@ public class ArticleController {
     @GetMapping("/search")
     public Result<List<ArticleSearchDTO>> searchBlog(String keywords)
     {
+        if(keywords.equals("")) return Result.error("请输入搜索关键字！");
         List<ArticleSearchDTO> articleSearchDTOS = articleService.listArticlesBySearch(keywords);
 
         if(articleSearchDTOS.size() == 0)

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @Slf4j
@@ -57,6 +58,11 @@ public class CommentController {
     {
         Long articleId = commentDTO.getArticleId();
         String comment = commentDTO.getComment();
+
+        if(Objects.equals(comment, ""))
+        {
+            return Result.error("请输入评论内容再发送！");
+        }
         Long userId = (Long) request.getSession().getAttribute("user");
         String username = (String) request.getSession().getAttribute("username");
 

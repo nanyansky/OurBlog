@@ -138,6 +138,10 @@ public class UserController {
     @PostMapping("/update")
     public Result<String> updateUser(HttpServletRequest request, @RequestBody User user)
     {
+        if(user.getUsername().equals("") && user.getPassword().equals(""))
+        {
+            return Result.error("用户名或密码不能为空！");
+        }
         Long userId = (Long) request.getSession().getAttribute("user");
         //对密码进行MD5加密
         user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
