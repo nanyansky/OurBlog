@@ -185,6 +185,10 @@ public class ArticleController {
     {
         List<ArticleSearchDTO> articleSearchDTOS = articleService.listArticlesBySearch(keywords);
 
+        if(articleSearchDTOS.size() == 0)
+        {
+            return Result.success("未搜索到相关结果！");
+        }
         return Result.success(articleSearchDTOS,"搜索成功!");
     }
 }

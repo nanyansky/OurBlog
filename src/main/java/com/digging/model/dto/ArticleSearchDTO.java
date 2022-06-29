@@ -51,10 +51,10 @@ public class ArticleSearchDTO {
     //文章作者username
     private String username;
     //文章作者id
-    private Long user_id;
+    private Long userId;
     //文章创建时间
-    private LocalDateTime create_time;
+    private LocalDateTime createTime;
     //文章修改时间
-    private LocalDateTime update_time;
+    private LocalDateTime updateTime;
 
 }
