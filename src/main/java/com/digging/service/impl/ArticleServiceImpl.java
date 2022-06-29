@@ -131,7 +131,10 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         HighlightBuilder.Field contentField = new HighlightBuilder.Field("content");
         contentField.preTags("<span style='color:#f47466'>");
         contentField.postTags("</span>");
-        contentField.fragmentSize(200);
+        //显示文章全部内容
+        contentField.numOfFragments(0);
+        //显示除html标签外 200个字符
+//        contentField.fragmentSize(200);
         nativeSearchQueryBuilder.withHighlightFields(titleField, contentField);
         // 搜索
         SearchHits<ArticleSearchDTO> search = elasticsearchRestTemplate.search(nativeSearchQueryBuilder.build(), ArticleSearchDTO.class);
