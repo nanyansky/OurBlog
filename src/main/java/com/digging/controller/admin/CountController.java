@@ -1,7 +1,6 @@
 package com.digging.controller.admin;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.digging.common.Result;
 import com.digging.entity.User;
 import com.digging.service.ArticleService;
 import com.digging.service.UserService;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping
-public class count {
+public class CountController {
 
     @Autowired
     UserService userService;

@@ -15,24 +15,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Document(indexName = "user")
 public class ArticleDTO {
     //文章id
-    @Id
     private Long id;
     //作者id
     private Long userId;
     //作者用户名
-    @Field(analyzer = "ik_max_word",searchAnalyzer = "ik_smart")
     private String username;
     //分类id
-    @Field(analyzer = "ik_max_word",searchAnalyzer = "ik_smart")
     private Long categoryId;
     //文章名
-    @Field(analyzer = "ik_max_word",searchAnalyzer = "ik_smart")
     private String name;
     //文章内容
-    @Field(analyzer = "ik_max_word",searchAnalyzer = "ik_smart")
     private String content;
     //创建时间
     @TableField(fill = FieldFill.INSERT)

@@ -5,6 +5,7 @@ import com.digging.entity.Article;
 import com.digging.entity.Tags;
 import com.digging.mapper.ArticleMapper;
 import com.digging.model.dto.ArticleDTO;
+import com.digging.model.dto.ArticleSearchDTO;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -21,4 +22,12 @@ public interface ArticleService extends IService<Article> {
     public List<ArticleDTO> getArticleByCategoryId(Long categoryId);
 
     public void handleTags(Long articleId, List<String> tagsList);
+
+    /**
+     * 搜索文章
+     *
+     * @param keywords 条件
+     * @return 文章
+     */
+    List<ArticleSearchDTO> listArticlesBySearch(String keywords);
 }

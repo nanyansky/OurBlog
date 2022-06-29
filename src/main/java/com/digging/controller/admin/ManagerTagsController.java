@@ -1,6 +1,5 @@
 package com.digging.controller.admin;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.digging.common.Result;
 import com.digging.entity.Tags;
 import com.digging.service.TagsService;
@@ -16,7 +15,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequestMapping("/admin")
-public class TagsList {
+public class ManagerTagsController {
 
     @Autowired
     TagsService tagsService;

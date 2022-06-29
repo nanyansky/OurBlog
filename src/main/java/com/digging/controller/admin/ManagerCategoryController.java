@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.digging.common.Result;
 import com.digging.entity.Article;
 import com.digging.entity.Category;
-import com.digging.entity.Tags;
-import com.digging.model.dto.CategoryDTO;
 import com.digging.model.dto.CategoryListDTO;
 import com.digging.service.ArticleService;
 import com.digging.service.CategoryService;
@@ -21,7 +19,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequestMapping("/admin")
-public class CategoryList {
+public class ManagerCategoryController {
 
     @Autowired
     CategoryService categoryService;

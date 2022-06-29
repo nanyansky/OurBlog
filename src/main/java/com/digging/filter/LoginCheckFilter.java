@@ -43,7 +43,7 @@ public class LoginCheckFilter implements Filter {
                 "/comment/list",
 
                 //ES
-                "/elastic/**",
+                "/blog/search",
                 //放行下载图片
                 "/file/download",
 

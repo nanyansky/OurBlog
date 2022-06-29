@@ -7,6 +7,7 @@ import com.digging.common.Result;
 import com.digging.entity.Article;
 import com.digging.entity.ArticleTags;
 import com.digging.model.dto.ArticleDTO;
+import com.digging.model.dto.ArticleSearchDTO;
 import com.digging.model.dto.PageDTO;
 import com.digging.service.ArticleService;
 import com.digging.service.ArticleTagService;
@@ -176,6 +177,15 @@ public class ArticleController {
         articleTagService.remove(new LambdaQueryWrapper<ArticleTags>().eq(ArticleTags::getArticleId, articleId));
 
         return Result.success("删除成功！");
+    }
+
+    //搜索文章
+    @GetMapping("/search")
+    public Result<List<ArticleSearchDTO>> searchBlog(String keywords)
+    {
+        List<ArticleSearchDTO> articleSearchDTOS = articleService.listArticlesBySearch(keywords);
+
+        return Result.success(articleSearchDTOS,"搜索成功!");
     }
 }
 

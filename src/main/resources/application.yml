@@ -14,7 +14,7 @@ spring:
       # 上传图片限定大小为 1M
       max-file-size: 1MB
 
-es.host: "168.138.174.87"
+es.host: "129.150.63.35"
 es.port: 9200
 
 mybatis-plus:
