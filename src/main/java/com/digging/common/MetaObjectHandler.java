@@ -31,6 +31,9 @@ public class MetaObjectHandler implements com.baomidou.mybatisplus.core.handlers
         if(metaObject.hasSetter("updateTime"))
             metaObject.setValue("updateTime", LocalDateTime.now());
 
+        if(metaObject.hasSetter("operationTime"))
+            metaObject.setValue("operationTime",LocalDateTime.now());
+
     }
 
     @Override

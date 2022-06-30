@@ -28,6 +28,6 @@ public class ManagerArticleController {
     public Result<String> updateUser(@RequestBody Article article)
     {
         if (articleService.updateById(article)) return Result.success("修改成功！");
-        else return Result.error("位置错误！");
+        else return Result.error("未知错误！");
     }
 }

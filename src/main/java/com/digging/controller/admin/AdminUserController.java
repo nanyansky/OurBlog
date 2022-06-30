@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.digging.annotation.OptLog;
 import com.digging.common.Result;
+import com.digging.entity.Article;
 import com.digging.entity.User;
 import com.digging.model.dto.PageDTO;
 import com.digging.model.dto.UserDTO;
@@ -15,6 +16,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -28,8 +30,9 @@ public class AdminUserController {
     @PostMapping("/login")
     public Result<UserDTO> adminLongin(HttpServletRequest req, @RequestBody User user)
     {
-        String username = user.getUsername();
+        if(user.getUsername().equals("") || user.getPassword().equals("")) return Result.error("用户名和密码不能为空！");
 
+        String username = user.getUsername();
         String password = user.getPassword();
 
         //对密码进行MD5加密
@@ -56,6 +59,7 @@ public class AdminUserController {
         }
         //登录成功
         req.getSession().setAttribute("user",userTmp.getId());
+        req.getSession().setAttribute("username",username);
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyProperties(userTmp,userDTO);
         return Result.success(userDTO ,"登录成功！");
@@ -89,5 +93,18 @@ public class AdminUserController {
         pageDTO.setTotal(pageInfo.getTotal());
 
         return Result.success(pageDTO);
+    }
+
+    @GetMapping("/list")
+    public Result<List<User>> articleList(int page, int pageSize)
+    {
+        return Result.success(userService.list());
+    }
+
+    @PostMapping("/update")
+    public Result<String> updateUser(@RequestBody User user)
+    {
+        if (userService.updateById(user)) return Result.success("修改成功！");
+        else return Result.error("未知错误！");
     }
 }
