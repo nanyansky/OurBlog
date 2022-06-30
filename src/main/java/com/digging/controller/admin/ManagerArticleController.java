@@ -6,10 +6,7 @@ import com.digging.entity.User;
 import com.digging.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,9 +25,9 @@ public class ManagerArticleController {
     }
 
     @PostMapping("/update")
-    public Result<String> updateUser(Article article)
+    public Result<String> updateUser(@RequestBody Article article)
     {
-        articleService.updateById(article);
-        return Result.success("修改成功！");
+        if (articleService.updateById(article)) return Result.success("修改成功！");
+        else return Result.error("位置错误！");
     }
 }
