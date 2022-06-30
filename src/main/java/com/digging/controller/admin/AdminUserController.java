@@ -95,12 +95,6 @@ public class AdminUserController {
         return Result.success(pageDTO);
     }
 
-    @GetMapping("/list")
-    public Result<List<User>> articleList(int page, int pageSize)
-    {
-        return Result.success(userService.list());
-    }
-
     @PostMapping("/update")
     public Result<String> updateUser(@RequestBody User user)
     {
