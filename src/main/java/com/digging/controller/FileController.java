@@ -1,5 +1,6 @@
 package com.digging.controller;
 
+import com.digging.annotation.OptLog;
 import com.digging.common.Result;
 import com.digging.entity.User;
 import com.digging.service.UserService;
@@ -33,6 +34,7 @@ public class FileController {
     UserService userService;
 
     // 文件上传
+    @OptLog(optType = "上传文件")
     @PostMapping("/upload")
     public Result<String> upload(HttpServletRequest request, MultipartFile file) throws Throwable{
 

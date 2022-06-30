@@ -2,6 +2,7 @@ package com.digging.controller.admin;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.digging.annotation.OptLog;
 import com.digging.common.Result;
 import com.digging.entity.User;
 import com.digging.model.dto.PageDTO;
@@ -23,6 +24,7 @@ public class AdminUserController {
     @Autowired
     UserService userService;
 
+    @OptLog(optType = "管理员登入")
     @PostMapping("/login")
     public Result<UserDTO> adminLongin(HttpServletRequest req, @RequestBody User user)
     {
@@ -59,6 +61,7 @@ public class AdminUserController {
         return Result.success(userDTO ,"登录成功！");
     }
 
+    @OptLog(optType = "管理员登出")
     @GetMapping("/logout")
     public Result<String> logout(HttpServletRequest httpServletRequest)
     {

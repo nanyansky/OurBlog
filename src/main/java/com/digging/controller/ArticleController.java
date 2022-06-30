@@ -3,6 +3,7 @@ package com.digging.controller;
 import cn.hutool.core.lang.Snowflake;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.digging.annotation.OptLog;
 import com.digging.common.Result;
 import com.digging.entity.Article;
 import com.digging.entity.ArticleTags;
@@ -108,6 +109,7 @@ public class ArticleController {
     }
 
     //修改文章
+    @OptLog(optType = "修改文章")
     @PostMapping("/update")
     public Result<String> updateBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
     {
@@ -139,6 +141,7 @@ public class ArticleController {
     }
 
     //添加文章
+    @OptLog(optType = "发布文章")
     @PostMapping("/add")
     public Result<String> addBlog(HttpServletRequest request, @RequestBody ArticleDTO articleDTO)
     {
@@ -173,6 +176,7 @@ public class ArticleController {
 
 
     //删除文章
+    @OptLog(optType = "删除文章")
     @GetMapping("/delete")
     public Result<String> deleteBlog(HttpServletRequest request, Long articleId)
     {
@@ -190,6 +194,7 @@ public class ArticleController {
     }
 
     //搜索文章
+    @OptLog(optType = "搜索文章")
     @GetMapping("/search")
     public Result<List<ArticleSearchDTO>> searchBlog(String keywords)
     {

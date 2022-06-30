@@ -1,6 +1,7 @@
 package com.digging.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.digging.annotation.OptLog;
 import com.digging.common.Result;
 import com.digging.entity.Comment;
 import com.digging.model.dto.CommentDTO;
@@ -53,6 +54,7 @@ public class CommentController {
     }
 
     //发表评论
+    @OptLog(optType = "发表评论")
     @PostMapping("/add")
     public Result<String> addComment(HttpServletRequest request, @RequestBody CommentDTO commentDTO)
     {

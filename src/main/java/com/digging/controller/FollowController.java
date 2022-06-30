@@ -1,6 +1,7 @@
 package com.digging.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.digging.annotation.OptLog;
 import com.digging.common.Result;
 import com.digging.entity.Follow;
 import com.digging.entity.User;
@@ -58,6 +59,7 @@ public class FollowController {
 
 
     //关注功能
+    @OptLog(optType = "关注用户")
     @GetMapping("/add/{hostUserId}")
     public Result<String> followUser(HttpServletRequest request, @PathVariable Long hostUserId)
     {
@@ -76,6 +78,7 @@ public class FollowController {
     }
 
     //取关功能
+    @OptLog(optType = "取消关注用户")
     @GetMapping("/remove/{hostUserId}")
     public Result<String> unFollowUser(HttpServletRequest request, @PathVariable Long hostUserId)
     {

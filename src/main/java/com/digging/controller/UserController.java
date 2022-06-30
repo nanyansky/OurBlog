@@ -2,6 +2,7 @@ package com.digging.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.api.R;
+import com.digging.annotation.OptLog;
 import com.digging.common.MyCustomException;
 import com.digging.common.Result;
 import com.digging.entity.User;
@@ -37,6 +38,7 @@ public class UserController {
     CommentService commentService;
 
 
+    @OptLog(optType = "用户登录")
     @PostMapping("/login")
     public Result<UserDTO> login(HttpServletRequest req, @RequestBody User user)
     {
@@ -68,13 +70,12 @@ public class UserController {
         req.getSession().setAttribute("user",userTmp.getId());
         req.getSession().setAttribute("username",username);
 
-        log.info("{}", req.getSession().getAttribute("username"));
-
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyProperties(userTmp,userDTO);
         return Result.success(userDTO ,"登录成功！");
     }
 
+    @OptLog(optType = "用户登出")
     @GetMapping("/logout")
     public Result<String> logout(HttpServletRequest httpServletRequest)
     {
@@ -85,6 +86,7 @@ public class UserController {
         return Result.success("登出成功！");
     }
 
+    @OptLog(optType = "用户注册")
     @PostMapping("/register")
     public Result<User> register(@RequestBody User user)
     {
@@ -136,6 +138,7 @@ public class UserController {
     }
 
     //用户修改个人信息
+    @OptLog(optType = "用户修改个人信息")
     @PostMapping("/update")
     public Result<String> updateUser(HttpServletRequest request, @RequestBody User user)
     {

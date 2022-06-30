@@ -43,7 +43,6 @@ public class ManagerCategoryController {
 
             categoryList.add(categoryListDTO);
         }
-        log.info("{}",categoryList);
         return Result.success(categoryList);
     }
 }
