@@ -15,6 +15,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -75,22 +76,9 @@ public class AdminUserController {
 
     //管理用户列表
     @GetMapping("/list")
-    public Result<PageDTO> userList(int page, int pageSize, Long username)
+    public Result<List<User>> userList(int page, int pageSize, Long username)
     {
-        log.info("page={}, pageSize={}",page,pageSize);
-
-        Page pageInfo = new Page(page,pageSize);
-        PageDTO pageDTO = new PageDTO();
-
-        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq((username != null),User::getUsername, username).orderByDesc(User::getCreateTime);
-
-        userService.page(pageInfo, queryWrapper);
-
-        pageDTO.setRecords(pageInfo.getRecords());
-        pageDTO.setTotal(pageInfo.getTotal());
-
-        return Result.success(pageDTO);
+        return Result.success(userService.list());
     }
 
     @PostMapping("/update")
