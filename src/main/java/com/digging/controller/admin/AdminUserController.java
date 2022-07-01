@@ -4,10 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.digging.annotation.OptLog;
 import com.digging.common.Result;
-import com.digging.entity.Article;
 import com.digging.entity.User;
-import com.digging.model.dto.PageDTO;
-import com.digging.model.dto.UserDTO;
+import com.digging.DTO.PageDTO;
+import com.digging.DTO.UserDTO;
 import com.digging.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -16,7 +15,6 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @RestController
 @Slf4j

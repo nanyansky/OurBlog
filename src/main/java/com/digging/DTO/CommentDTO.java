@@ -1,4 +1,4 @@
-package com.digging.model.dto;
+package com.digging.DTO;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;

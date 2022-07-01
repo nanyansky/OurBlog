@@ -2,8 +2,7 @@ package com.digging.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.digging.entity.Follow;
-import com.digging.entity.User;
-import com.digging.model.dto.UserDTO;
+import com.digging.DTO.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

@@ -1,21 +1,18 @@
 package com.digging.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.extension.api.R;
 import com.digging.annotation.OptLog;
 import com.digging.common.MyCustomException;
 import com.digging.common.Result;
 import com.digging.entity.User;
-import com.digging.model.dto.UserDTO;
+import com.digging.DTO.UserDTO;
 import com.digging.service.ArticleService;
 import com.digging.service.CommentService;
 import com.digging.service.FollowService;
 import com.digging.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 

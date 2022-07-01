@@ -8,25 +8,21 @@ import com.digging.entity.ArticleTags;
 import com.digging.entity.Tags;
 import com.digging.mapper.ArticleMapper;
 import com.digging.mapper.TagsMapper;
-import com.digging.model.dto.ArticleDTO;
-import com.digging.model.dto.ArticleSearchDTO;
+import com.digging.DTO.ArticleDTO;
+import com.digging.DTO.ArticleSearchDTO;
 import com.digging.service.ArticleService;
 import com.digging.service.ArticleTagService;
 import com.digging.service.TagsService;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -91,6 +87,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     public List<ArticleSearchDTO> listArticlesBySearch(String keywords) {
         return searchArticle(buildQuery(keywords));
+    }
+
+    @Override
+    public void addArticleHot(Long articleId, Integer num) {
+        articleMapper.addArticleHot(articleId,num);
     }
 
 

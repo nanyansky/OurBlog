@@ -1,4 +1,4 @@
-package com.digging.model.dto;
+package com.digging.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

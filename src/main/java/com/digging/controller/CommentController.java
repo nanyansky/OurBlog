@@ -4,14 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.digging.annotation.OptLog;
 import com.digging.common.Result;
 import com.digging.entity.Comment;
-import com.digging.model.dto.CommentDTO;
+import com.digging.DTO.CommentDTO;
+import com.digging.service.ArticleService;
 import com.digging.service.CommentService;
 import com.digging.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +27,8 @@ public class CommentController {
     CommentService commentService;
     @Autowired
     UserService userService;
+    @Autowired
+    ArticleService articleService;
 
     //评论列表
     @GetMapping("/list")
@@ -74,6 +75,7 @@ public class CommentController {
         commentTmp.setUserId(userId);
 
         commentService.save(commentTmp);
+        articleService.addArticleHot(articleId,2);
 
         return Result.success("发表成功！");
     }

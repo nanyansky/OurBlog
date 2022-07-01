@@ -2,8 +2,7 @@ package com.digging.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.digging.entity.Follow;
-import com.digging.entity.User;
-import com.digging.model.dto.UserDTO;
+import com.digging.DTO.UserDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -7,9 +7,9 @@ import com.digging.annotation.OptLog;
 import com.digging.common.Result;
 import com.digging.entity.Article;
 import com.digging.entity.ArticleTags;
-import com.digging.model.dto.ArticleDTO;
-import com.digging.model.dto.ArticleSearchDTO;
-import com.digging.model.dto.PageDTO;
+import com.digging.DTO.ArticleDTO;
+import com.digging.DTO.ArticleSearchDTO;
+import com.digging.DTO.PageDTO;
 import com.digging.service.ArticleService;
 import com.digging.service.ArticleTagService;
 import com.digging.service.TagsService;
@@ -53,9 +53,9 @@ public class ArticleController {
         PageDTO pageDTO = new PageDTO<>();
         LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<>();
         //添加个人文章列表，若存在userId参数，则说明查询个人文章列表
-        queryWrapper.eq((userId != null), Article::getUserId,userId);
+        queryWrapper.eq((userId != null), Article::getUserId,userId).eq(Article::getAvailable,true);
 
-        queryWrapper.orderByDesc(Article::getUpdateTime);
+        queryWrapper.orderByDesc(Article::getArticleHot);
         articleService.page(pageInfo,queryWrapper);
 
 

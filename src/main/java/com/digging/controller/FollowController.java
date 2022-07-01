@@ -5,7 +5,7 @@ import com.digging.annotation.OptLog;
 import com.digging.common.Result;
 import com.digging.entity.Follow;
 import com.digging.entity.User;
-import com.digging.model.dto.UserDTO;
+import com.digging.DTO.UserDTO;
 import com.digging.service.FollowService;
 import com.digging.service.UserService;
 import lombok.extern.slf4j.Slf4j;

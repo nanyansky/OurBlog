@@ -2,9 +2,7 @@ package com.digging.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.digging.entity.User;
-import com.digging.model.dto.UserDTO;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

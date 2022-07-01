@@ -3,11 +3,9 @@ package com.digging.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.digging.entity.Article;
 import com.digging.entity.Tags;
-import com.digging.mapper.ArticleMapper;
-import com.digging.model.dto.ArticleDTO;
-import com.digging.model.dto.ArticleSearchDTO;
+import com.digging.DTO.ArticleDTO;
+import com.digging.DTO.ArticleSearchDTO;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 public interface ArticleService extends IService<Article> {
@@ -30,4 +28,7 @@ public interface ArticleService extends IService<Article> {
      * @return 文章
      */
     List<ArticleSearchDTO> listArticlesBySearch(String keywords);
+
+    //文章热度在新增一条评论时+2,浏览一次时+1
+    void addArticleHot(Long articleId, Integer num);
 }
