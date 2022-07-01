@@ -109,7 +109,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         if (Objects.nonNull(keywords)) {
             boolQueryBuilder.must(QueryBuilders.boolQuery().should(QueryBuilders.matchQuery("name", keywords))
                             .should(QueryBuilders.matchQuery("content", keywords)))
-                    .must(QueryBuilders.termQuery("available", 0));
+                    .must(QueryBuilders.termQuery("available", true));
         }
         // 查询
         nativeSearchQueryBuilder.withQuery(boolQueryBuilder);

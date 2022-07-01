@@ -44,8 +44,8 @@ public class ArticleSearchDTO {
     /**
      * 文章状态
      */
-    @Field(type = FieldType.Integer)
-    private Integer available;
+    @Field(type = FieldType.Boolean)
+    private Boolean available;
 
 
     //文章作者username

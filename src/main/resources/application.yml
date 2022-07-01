@@ -6,16 +6,16 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://129.150.63.35:3306/db_OurBlog?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://129.150.63.35:3306/db_OurBlog?serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: db_OurBlog
       password: 123456
   servlet:
     multipart:
       # 上传图片限定大小为 1M
       max-file-size: 1MB
-
-es.host: "129.150.63.35"
-es.port: 9200
+#
+#es.host: "129.150.63.35"
+#es.port: 9200
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
