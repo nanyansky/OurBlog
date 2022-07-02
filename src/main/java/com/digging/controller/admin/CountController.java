@@ -29,7 +29,7 @@ public class CountController {
     @GetMapping("/bcount")
     public int getArticleCount()
     {
-        return userService.count();
+        return articleService.count();
     }
 
     //获取总管理员数
