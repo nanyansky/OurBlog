@@ -1,5 +1,6 @@
 package com.digging.controller.admin;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.digging.common.Result;
 import com.digging.entity.OperationLogs;
 import com.digging.service.OperationLogsService;
@@ -20,6 +21,6 @@ public class ManagerLogsController {
     @GetMapping("/logsList")
     public Result<List<OperationLogs>> LogsList()
     {
-        return Result.success(operationLogsService.list());
+        return Result.success(operationLogsService.list(new LambdaQueryWrapper<OperationLogs>().orderByDesc(OperationLogs::getOperationTime)));
     }
 }

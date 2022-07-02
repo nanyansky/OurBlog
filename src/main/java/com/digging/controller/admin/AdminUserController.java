@@ -78,7 +78,7 @@ public class AdminUserController {
     @GetMapping("/list")
     public Result<List<User>> userList(int page, int pageSize, Long username)
     {
-        return Result.success(userService.list());
+        return Result.success(userService.list(new LambdaQueryWrapper<User>().orderByDesc(User::getCreateTime)));
     }
 
     @PostMapping("/update")
