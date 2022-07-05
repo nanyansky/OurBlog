@@ -1,6 +1,10 @@
 # OurBlog项目总结
 多人博客系统
 
+项目地址：后端：[gqd000/OurBlog: 多人博客系统 (github.com)](https://github.com/gqd000/OurBlog)
+
+​		 前端：[1664635775/BlogDemo (github.com)](https://github.com/1664635775/BlogDemo)
+
 ## TIPS
 
 - 强行关闭甲骨文服务器防火墙：
