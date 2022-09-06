@@ -45,3 +45,5 @@
 - 创建实体类时，要实现序列号接口，即`implements Serializable`，才能存入Redis缓存。
 
 - 注意Redis缓存删除时间。
+
+
