@@ -13,6 +13,11 @@ spring:
     multipart:
       # 上传图片限定大小为 1M
       max-file-size: 1MB
+
+  redis:
+    host: 129.150.63.35
+    port: 6379
+    database: 0
 #
 #es.host: "129.150.63.35"
 #es.port: 9200
