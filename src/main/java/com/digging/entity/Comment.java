@@ -21,4 +21,6 @@ public class Comment {
     private LocalDateTime createTime;
     //是否删除
     private Boolean isDelete;
+    //点赞数
+    private int likeCount;
 }

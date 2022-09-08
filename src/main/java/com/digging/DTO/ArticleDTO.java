@@ -37,6 +37,8 @@ public class ArticleDTO {
     //文章热度
     @Field(type = FieldType.Integer)
     private Long articleHot;
+    //点赞数
+    private int likeCount;
 
 
     //文章标签

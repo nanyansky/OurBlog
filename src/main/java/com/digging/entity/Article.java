@@ -34,6 +34,8 @@ public class Article {
     private Boolean isDelete;
     //文章热度
     private Long articleHot;
+    //点赞数
+    private int likeCount;
 
 
     //文章标签

@@ -21,11 +21,9 @@ public class LikeController {
 
 
     @OptLog(optType = "用户点赞")
-    @PostMapping("/like")
-    public Result<Map<String,Object>> like(@RequestBody Like like)
+    @GetMapping("/like")
+    public Result<Map<String,Object>> like(@RequestParam int entityId,@RequestParam int entityType)
     {
-        int entityType = like.getEntityType();
-        int entityId = like.getEntityId();
         //点赞
         likeService.like(request,entityType,entityId);
         //数量
