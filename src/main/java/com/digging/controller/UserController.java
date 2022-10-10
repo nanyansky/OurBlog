@@ -39,6 +39,7 @@ public class UserController {
     @PostMapping("/login")
     public Result<UserDTO> login(HttpServletRequest req, @RequestBody User user)
     {
+        //校验
         if(user.getUsername().equals("") || user.getPassword().equals("")) return Result.error("用户名和密码不能为空！");
         String username = user.getUsername();
         String password = user.getPassword();

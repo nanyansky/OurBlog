@@ -85,7 +85,7 @@ public class ArticleController {
     public Result<List<ArticleDTO>> blogTime(Long userId)
     {
         LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<>();
-        //查找用户所有文章并a按创建日期降序排序
+        //查找用户所有文章并按创建日期降序排序
         queryWrapper.eq(Article::getUserId, userId).orderByDesc(Article::getCreateTime);
 
         //entity转DTO
